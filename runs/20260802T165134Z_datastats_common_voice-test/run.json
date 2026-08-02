@@ -1,0 +1,63 @@
+{
+  "run_id": "20260802T165134Z_datastats_common_voice-test",
+  "kind": "datastats",
+  "name": "common_voice-test",
+  "argv": [
+    "/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/analyze.py",
+    "--config",
+    "configs/default.yaml",
+    "--data-stats",
+    "--dataset",
+    "common_voice",
+    "--split",
+    "test"
+  ],
+  "config": {
+    "seed": 42,
+    "paths": {
+      "data_root": "data",
+      "cache_root": "cache",
+      "runs_dir": "runs",
+      "models_dir": "models"
+    },
+    "audio": {
+      "sampling_rate": 16000
+    },
+    "datasets": {
+      "common_voice": {
+        "hf_id": "mozilla-foundation/common_voice_17_0",
+        "hf_config": "tr"
+      },
+      "fleurs": {
+        "source": "gcs",
+        "gcs_url": "https://storage.googleapis.com/xtreme_translations/FLEURS102/tr_tr.tar.gz",
+        "hf_id": "google/fleurs",
+        "hf_config": "tr_tr"
+      }
+    },
+    "model": {
+      "language": "turkish",
+      "language_code": "tr",
+      "task": "transcribe"
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "torch": "2.13.0+cu130",
+    "cuda_available": false,
+    "transformers": "4.46.3"
+  },
+  "git_commit": "91e55027297c8cc9d8e88f467e29fdcf152d9add",
+  "started_utc": "20260802T165134Z",
+  "status": "failed",
+  "metrics": {},
+  "artifacts": {},
+  "wall_seconds": 1.03,
+  "error": {
+    "type": "ConnectionError",
+    "message": "Couldn't reach 'mozilla-foundation/common_voice_17_0' on the Hub (ProxyError)",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/analyze.py\", line 296, in main\n    manifest = data_mod.prepare_manifest(cfg, args.dataset, args.split, args.max_samples)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/data.py\", line 214, in prepare_manifest\n    ds = _LOADERS[dataset](cfg, split)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/data.py\", line 167, in load_common_voice\n    raw = load_dataset(\n          ^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/datasets/load.py\", line 2606, in load_dataset\n    builder_instance = load_dataset_builder(\n                       ^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/datasets/load.py\", line 2277, in load_dataset_builder\n    dataset_module = dataset_module_factory(\n                     ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/datasets/load.py\", line 1923, in dataset_module_factory\n    raise e1 from None\n  File \"/root/venv/lib/python3.11/site-packages/datasets/load.py\", line 1854, in dataset_module_factory\n    raise ConnectionError(f\"Couldn't reach '{path}' on the Hub ({e.__class__.__name__})\") from e\nConnectionError: Couldn't reach 'mozilla-foundation/common_voice_17_0' on the Hub (ProxyError)\n"
+  }
+}

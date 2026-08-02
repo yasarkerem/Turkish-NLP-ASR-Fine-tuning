@@ -1,0 +1,29 @@
+inherit: default.yaml
+
+# Cheap-baseline control: whisper-tiny, full fine-tune (no adapter). Kept
+# deliberately modest so it answers "does a small cheap model fine-tuned on
+# in-domain data beat big zero-shot models?" rather than being tuned to win.
+output_name: whisper-tiny-full-cv17-tr
+
+model:
+  id: openai/whisper-tiny
+
+train:
+  dataset: common_voice
+  split: train
+  eval_split: validation
+  max_train_samples: null
+  max_eval_samples: 500
+  method: full
+  batch_size: 32
+  eval_batch_size: 16
+  grad_accum: 1
+  lr: 1.0e-5
+  warmup_steps: 200
+  num_epochs: 2
+  max_steps: null
+  fp16: auto
+  predict_with_generate: true
+  generation_max_length: 225
+  logging_steps: 50
+  dataloader_workers: 2

@@ -1,0 +1,28 @@
+inherit: default.yaml
+
+# Tiny end-to-end smoke run: 5 samples through the real train -> eval code
+# path with a locally built debug model. Must pass before any full training
+# run is launched.
+output_name: smoke
+
+train:
+  dataset: fleurs
+  split: test
+  eval_split: null
+  max_train_samples: 5
+  method: lora
+  lora:
+    r: 2
+    alpha: 4
+    dropout: 0.0
+    target_modules: [q_proj, v_proj]
+  batch_size: 2
+  grad_accum: 1
+  lr: 1.0e-3
+  warmup_steps: 0
+  num_epochs: 1
+  max_steps: 3
+  fp16: false
+  predict_with_generate: false
+  generation_max_length: 32
+  logging_steps: 1

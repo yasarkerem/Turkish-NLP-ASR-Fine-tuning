@@ -1,0 +1,19 @@
+# torch is intentionally unpinned: install the right build for your platform,
+# e.g. `pip install torch --index-url https://download.pytorch.org/whl/cu121`
+# for CUDA 12.1 or `.../whl/cpu` for CPU-only machines.
+torch>=2.1
+
+transformers==4.46.3
+datasets==2.21.0
+accelerate==1.1.1
+peft==0.13.2
+tokenizers>=0.20,<0.21
+
+jiwer>=3.0
+soundfile>=0.12.1
+librosa==0.10.2.post1
+numpy==1.26.4
+
+pyyaml>=6.0
+psutil>=5.9
+pytest>=8.0
