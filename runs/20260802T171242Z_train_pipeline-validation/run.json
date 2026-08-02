@@ -1,0 +1,101 @@
+{
+  "run_id": "20260802T171242Z_train_pipeline-validation",
+  "kind": "train",
+  "name": "pipeline-validation",
+  "argv": [
+    "/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/train.py",
+    "--config",
+    "configs/smoke.yaml",
+    "--set",
+    "model.id=cache/debug_model",
+    "--set",
+    "train.split=train",
+    "--set",
+    "output_name=pipeline-validation"
+  ],
+  "config": {
+    "seed": 42,
+    "paths": {
+      "data_root": "data",
+      "cache_root": "cache",
+      "runs_dir": "runs",
+      "models_dir": "models"
+    },
+    "audio": {
+      "sampling_rate": 16000
+    },
+    "datasets": {
+      "common_voice": {
+        "hf_id": "mozilla-foundation/common_voice_17_0",
+        "hf_config": "tr"
+      },
+      "fleurs": {
+        "source": "gcs",
+        "gcs_url": "https://storage.googleapis.com/xtreme_translations/FLEURS102/tr_tr.tar.gz",
+        "hf_id": "google/fleurs",
+        "hf_config": "tr_tr"
+      }
+    },
+    "model": {
+      "language": "turkish",
+      "language_code": "tr",
+      "task": "transcribe",
+      "id": "cache/debug_model"
+    },
+    "output_name": "pipeline-validation",
+    "train": {
+      "dataset": "fleurs",
+      "split": "train",
+      "eval_split": null,
+      "max_train_samples": 5,
+      "method": "lora",
+      "lora": {
+        "r": 2,
+        "alpha": 4,
+        "dropout": 0.0,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ]
+      },
+      "batch_size": 2,
+      "grad_accum": 1,
+      "lr": 0.001,
+      "warmup_steps": 0,
+      "num_epochs": 1,
+      "max_steps": 3,
+      "fp16": false,
+      "predict_with_generate": false,
+      "generation_max_length": 32,
+      "logging_steps": 1
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "torch": "2.13.0+cu130",
+    "cuda_available": false,
+    "transformers": "4.46.3"
+  },
+  "git_commit": "657aeee3e27c3ff63432e4b39b7104fff8812f72",
+  "started_utc": "20260802T171242Z",
+  "status": "completed",
+  "metrics": {
+    "n_train": 5,
+    "n_eval": 0,
+    "trainable_params": 3072,
+    "total_params": 355264,
+    "train_runtime": 0.6574,
+    "train_samples_per_second": 9.127,
+    "train_steps_per_second": 4.564,
+    "total_flos": 1426636800000.0,
+    "train_loss": 6.223735014597575,
+    "epoch": 1.0
+  },
+  "artifacts": {
+    "adapter": "models/pipeline-validation/adapter",
+    "processor": "models/pipeline-validation"
+  },
+  "wall_seconds": 6.23
+}

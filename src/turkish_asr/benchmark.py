@@ -56,7 +56,25 @@ def build_random_model(arch: str, seed: int):
         max_source_positions=1500,
         max_target_positions=448,
     )
-    return WhisperForConditionalGeneration(config)
+    # Allocate on the meta device and fill with a single vectorized uniform
+    # draw instead of running the per-module init graph: billions of values
+    # are never needed for timing, only that they are sane floats (no NaNs,
+    # no denormals — both would distort CPU timings). This keeps peak memory
+    # at one weight copy, which matters for large-v3 on small machines.
+    with torch.device("meta"):
+        model = WhisperForConditionalGeneration(config)
+    model = model.to_empty(device="cpu")
+    with torch.no_grad():
+        for p in model.parameters():
+            p.uniform_(-0.02, 0.02)
+        for b in model.buffers():
+            if b.dtype.is_floating_point:
+                b.uniform_(-0.02, 0.02)
+    # to_empty materializes tied tensors as separate copies; retie so the
+    # parameter count and memory match the real checkpoints (Whisper ties
+    # proj_out to the decoder token embedding).
+    model.tie_weights()
+    return model
 
 
 def timed_transcode(model, features, n_steps: int) -> dict:
@@ -144,6 +162,7 @@ def run_benchmark(cfg: dict, args, log: RunLog) -> dict:
             )
             if (k + 1) % 10 == 0 or k + 1 == len(idxs):
                 print(f"  {args.arch}: {k + 1}/{len(idxs)} utterances", flush=True)
+                log.log_metrics(progress_utterances=k + 1)
 
     proc = sum(u["feature_s"] + u["total_s"] for u in per_utt)
     audio_s = sum(u["duration_s"] for u in per_utt)

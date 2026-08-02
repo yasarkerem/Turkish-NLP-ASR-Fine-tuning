@@ -1,0 +1,166 @@
+[
+  {
+    "run_id": "20260802T171256Z_eval_pipeline-validation",
+    "model": "cache/debug_model",
+    "adapter": "models/pipeline-validation/adapter",
+    "status": "completed",
+    "dataset": "fleurs",
+    "split": "test",
+    "aggregate": {
+      "wer_raw": 1.0,
+      "cer_raw": 1.0,
+      "wer_norm": 1.0,
+      "cer_norm": 1.0,
+      "n_utterances": 40,
+      "n_ref_words_raw": 724,
+      "n_ref_words_norm": 725,
+      "n_skipped_empty_norm": 0,
+      "n_skipped_empty_raw": 0
+    },
+    "duration_slices": {
+      "3-6s": {
+        "n": 1,
+        "wer_raw": 1.0,
+        "cer_raw": 1.0,
+        "wer_norm": 1.0,
+        "cer_norm": 1.0,
+        "n_utterances": 1,
+        "n_ref_words_raw": 6,
+        "n_ref_words_norm": 6,
+        "n_skipped_empty_norm": 0,
+        "n_skipped_empty_raw": 0
+      },
+      "6-10s": {
+        "n": 11,
+        "wer_raw": 1.0,
+        "cer_raw": 1.0,
+        "wer_norm": 1.0,
+        "cer_norm": 1.0,
+        "n_utterances": 11,
+        "n_ref_words_raw": 149,
+        "n_ref_words_norm": 149,
+        "n_skipped_empty_norm": 0,
+        "n_skipped_empty_raw": 0
+      },
+      ">10s": {
+        "n": 28,
+        "wer_raw": 1.0,
+        "cer_raw": 1.0,
+        "wer_norm": 1.0,
+        "cer_norm": 1.0,
+        "n_utterances": 28,
+        "n_ref_words_raw": 569,
+        "n_ref_words_norm": 570,
+        "n_skipped_empty_norm": 0,
+        "n_skipped_empty_raw": 0
+      }
+    },
+    "metadata_slices": {
+      "gender": {
+        "coverage": 1.0,
+        "n_with_value": 40,
+        "slices": {
+          "male": {
+            "n": 40,
+            "wer_raw": 1.0,
+            "cer_raw": 1.0,
+            "wer_norm": 1.0,
+            "cer_norm": 1.0,
+            "n_utterances": 40,
+            "n_ref_words_raw": 724,
+            "n_ref_words_norm": 725,
+            "n_skipped_empty_norm": 0,
+            "n_skipped_empty_raw": 0
+          }
+        }
+      },
+      "age": {
+        "coverage": 0.0,
+        "n_with_value": 0,
+        "slices": {}
+      },
+      "accents": {
+        "coverage": 0.0,
+        "n_with_value": 0,
+        "slices": {}
+      }
+    },
+    "turkish_char_slices": {
+      "with_turkish_chars": {
+        "n": 40,
+        "wer_raw": 1.0,
+        "cer_raw": 1.0,
+        "wer_norm": 1.0,
+        "cer_norm": 1.0,
+        "n_utterances": 40,
+        "n_ref_words_raw": 724,
+        "n_ref_words_norm": 725,
+        "n_skipped_empty_norm": 0,
+        "n_skipped_empty_raw": 0
+      }
+    },
+    "per_char_errors": {
+      "ç": {
+        "ref_count": 58,
+        "errors": 58,
+        "char_error_rate": 1.0
+      },
+      "ğ": {
+        "ref_count": 43,
+        "errors": 43,
+        "char_error_rate": 1.0
+      },
+      "ı": {
+        "ref_count": 211,
+        "errors": 211,
+        "char_error_rate": 1.0
+      },
+      "ö": {
+        "ref_count": 37,
+        "errors": 37,
+        "char_error_rate": 1.0
+      },
+      "ş": {
+        "ref_count": 77,
+        "errors": 77,
+        "char_error_rate": 1.0
+      },
+      "ü": {
+        "ref_count": 91,
+        "errors": 91,
+        "char_error_rate": 1.0
+      },
+      "all_other_letters": {
+        "ref_count": 4198,
+        "errors": 4198,
+        "char_error_rate": 1.0
+      }
+    },
+    "worst_pairs": [
+      {
+        "utt_id": "fleurs-test-1712",
+        "duration_s": 18.3,
+        "wer_norm": 1.0,
+        "reference": "Sundarbans 1966 yılından beri vahşi hayatı koruma bölgesidir ve şu anda bölgede 400 Royal Bengal kaplanı ve yaklaşık  30.000 benekli geyik olduğu düşünülmektedir.",
+        "hypothesis": "",
+        "turkish_chars_in_ref": true
+      },
+      {
+        "utt_id": "fleurs-test-2008",
+        "duration_s": 17.8,
+        "wer_norm": 1.0,
+        "reference": "Bali'de gündemdeki diğer konular arasında dünyanın geriye kalan ormanlarının kurtarılması ve gelişmekte olan ülkelerin daha az kirlenmeye neden olan yöntemlerle büyümelerine yardımcı olacak teknolojileri paylaşmak yer alıyor.",
+        "hypothesis": "",
+        "turkish_chars_in_ref": true
+      },
+      {
+        "utt_id": "fleurs-test-1961",
+        "duration_s": 17.8,
+        "wer_norm": 1.0,
+        "reference": "Sosyalleşmenin önemini göstermek için kullanılan en yaygın yöntemlerden birisi büyürken yetişkinler tarafından ihmal yoluyla, istemeyerek veya bilerek taciz ederek sosyalleşmesi sağlanan çocukların yer aldığı birkaç talihsiz olaya dikkat çekmektir.",
+        "hypothesis": "",
+        "turkish_chars_in_ref": true
+      }
+    ]
+  }
+]

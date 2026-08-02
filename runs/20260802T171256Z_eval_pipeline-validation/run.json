@@ -1,0 +1,135 @@
+{
+  "run_id": "20260802T171256Z_eval_pipeline-validation",
+  "kind": "eval",
+  "name": "pipeline-validation",
+  "argv": [
+    "/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/evaluate.py",
+    "--config",
+    "configs/smoke.yaml",
+    "--model",
+    "cache/debug_model",
+    "--adapter",
+    "models/pipeline-validation/adapter",
+    "--dataset",
+    "fleurs",
+    "--split",
+    "test",
+    "--max-samples",
+    "40",
+    "--batch-size",
+    "4",
+    "--max-new-tokens",
+    "24",
+    "--rtf-utterances",
+    "0",
+    "--run-name",
+    "pipeline-validation"
+  ],
+  "config": {
+    "seed": 42,
+    "paths": {
+      "data_root": "data",
+      "cache_root": "cache",
+      "runs_dir": "runs",
+      "models_dir": "models"
+    },
+    "audio": {
+      "sampling_rate": 16000
+    },
+    "datasets": {
+      "common_voice": {
+        "hf_id": "mozilla-foundation/common_voice_17_0",
+        "hf_config": "tr"
+      },
+      "fleurs": {
+        "source": "gcs",
+        "gcs_url": "https://storage.googleapis.com/xtreme_translations/FLEURS102/tr_tr.tar.gz",
+        "hf_id": "google/fleurs",
+        "hf_config": "tr_tr"
+      }
+    },
+    "model": {
+      "language": "turkish",
+      "language_code": "tr",
+      "task": "transcribe"
+    },
+    "output_name": "smoke",
+    "train": {
+      "dataset": "fleurs",
+      "split": "test",
+      "eval_split": null,
+      "max_train_samples": 5,
+      "method": "lora",
+      "lora": {
+        "r": 2,
+        "alpha": 4,
+        "dropout": 0.0,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ]
+      },
+      "batch_size": 2,
+      "grad_accum": 1,
+      "lr": 0.001,
+      "warmup_steps": 0,
+      "num_epochs": 1,
+      "max_steps": 3,
+      "fp16": false,
+      "predict_with_generate": false,
+      "generation_max_length": 32,
+      "logging_steps": 1
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "torch": "2.13.0+cu130",
+    "cuda_available": false,
+    "transformers": "4.46.3"
+  },
+  "git_commit": "657aeee3e27c3ff63432e4b39b7104fff8812f72",
+  "started_utc": "20260802T171256Z",
+  "status": "completed",
+  "metrics": {
+    "n_utterances": 40,
+    "device": "cpu",
+    "dtype": "torch.float32",
+    "model_size": {
+      "params_total": 352192,
+      "params_bytes": 1408768,
+      "params_mib": 1.3,
+      "adapter_params_bytes": 12288,
+      "adapter_disk_bytes": 15504,
+      "model_disk_bytes": 1418368
+    },
+    "memory": {
+      "peak_rss_mib": 1309.1
+    },
+    "wer_cer": {
+      "wer_raw": 1.0,
+      "cer_raw": 1.0,
+      "wer_norm": 1.0,
+      "cer_norm": 1.0,
+      "n_utterances": 40,
+      "n_ref_words_raw": 724,
+      "n_ref_words_norm": 725,
+      "n_skipped_empty_norm": 0,
+      "n_skipped_empty_raw": 0
+    },
+    "throughput": {
+      "batched_proc_s": 1.09,
+      "batched_audio_s": 484.02,
+      "batched_rtf": 0.0023,
+      "batch_size": 4
+    },
+    "rtf": null
+  },
+  "artifacts": {
+    "predictions": "runs/20260802T171256Z_eval_pipeline-validation/predictions.jsonl"
+  },
+  "wall_seconds": 3.99,
+  "model": "cache/debug_model",
+  "adapter": "models/pipeline-validation/adapter"
+}
