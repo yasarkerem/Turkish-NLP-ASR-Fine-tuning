@@ -1,0 +1,31 @@
+inherit: default.yaml
+
+output_name: whisper-small-lora-cv17-tr
+
+model:
+  id: openai/whisper-small
+
+train:
+  dataset: common_voice
+  split: train
+  eval_split: validation
+  max_train_samples: null
+  max_eval_samples: 500
+  method: lora
+  lora:
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules: [q_proj, v_proj]
+  batch_size: 16
+  eval_batch_size: 8
+  grad_accum: 1
+  lr: 1.0e-3
+  warmup_steps: 200
+  num_epochs: 2
+  max_steps: null
+  fp16: auto
+  predict_with_generate: true
+  generation_max_length: 225
+  logging_steps: 50
+  dataloader_workers: 2

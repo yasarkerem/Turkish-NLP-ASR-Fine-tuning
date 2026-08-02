@@ -1,0 +1,29 @@
+# Shared defaults. All paths are relative to the working directory (or
+# TURKISH_ASR_ROOT when set); nothing is machine-specific.
+seed: 42
+
+paths:
+  data_root: data
+  cache_root: cache
+  runs_dir: runs
+  models_dir: models
+
+audio:
+  sampling_rate: 16000
+
+datasets:
+  common_voice:
+    hf_id: mozilla-foundation/common_voice_17_0
+    hf_config: tr
+  fleurs:
+    # "gcs" reads the original FLEURS release tarball from Google Cloud
+    # Storage (no auth); "hf" uses google/fleurs from the Hugging Face Hub.
+    source: gcs
+    gcs_url: https://storage.googleapis.com/xtreme_translations/FLEURS102/tr_tr.tar.gz
+    hf_id: google/fleurs
+    hf_config: tr_tr
+
+model:
+  language: turkish
+  language_code: tr
+  task: transcribe
