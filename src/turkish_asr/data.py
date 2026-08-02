@@ -69,7 +69,11 @@ def ensure_fleurs_gcs(cfg: dict) -> Path:
     ds_cfg = cfg["datasets"]["fleurs"]
     raw_root = get_path(cfg, "data_root", "data") / "raw" / "fleurs"
     lang_dir = raw_root / "tr_tr"
-    if all((lang_dir / f).exists() for f in _FLEURS_SPLIT_FILES.values()):
+    complete = all(
+        (lang_dir / f).exists() and (lang_dir / "audio" / f.split(".")[0]).is_dir()
+        for f in _FLEURS_SPLIT_FILES.values()
+    )
+    if complete:
         return lang_dir
     tarball = raw_root / "tr_tr.tar.gz"
     if not tarball.exists():
