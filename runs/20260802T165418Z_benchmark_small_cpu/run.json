@@ -1,0 +1,57 @@
+{
+  "run_id": "20260802T165418Z_benchmark_small_cpu",
+  "kind": "benchmark",
+  "name": "small_cpu",
+  "argv": [
+    "/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/benchmark.py",
+    "--config",
+    "configs/default.yaml",
+    "--arch",
+    "small",
+    "--n-utterances",
+    "60"
+  ],
+  "config": {
+    "seed": 42,
+    "paths": {
+      "data_root": "data",
+      "cache_root": "cache",
+      "runs_dir": "runs",
+      "models_dir": "models"
+    },
+    "audio": {
+      "sampling_rate": 16000
+    },
+    "datasets": {
+      "common_voice": {
+        "hf_id": "mozilla-foundation/common_voice_17_0",
+        "hf_config": "tr"
+      },
+      "fleurs": {
+        "source": "gcs",
+        "gcs_url": "https://storage.googleapis.com/xtreme_translations/FLEURS102/tr_tr.tar.gz",
+        "hf_id": "google/fleurs",
+        "hf_config": "tr_tr"
+      }
+    },
+    "model": {
+      "language": "turkish",
+      "language_code": "tr",
+      "task": "transcribe"
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "torch": "2.13.0+cu130",
+    "cuda_available": false,
+    "transformers": "4.46.3"
+  },
+  "git_commit": "91e55027297c8cc9d8e88f467e29fdcf152d9add",
+  "started_utc": "20260802T165418Z",
+  "status": "running",
+  "metrics": {},
+  "artifacts": {},
+  "wall_seconds": 0.18
+}

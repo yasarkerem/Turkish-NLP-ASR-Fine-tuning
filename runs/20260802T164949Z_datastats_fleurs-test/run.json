@@ -1,0 +1,63 @@
+{
+  "run_id": "20260802T164949Z_datastats_fleurs-test",
+  "kind": "datastats",
+  "name": "fleurs-test",
+  "argv": [
+    "/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/analyze.py",
+    "--config",
+    "configs/default.yaml",
+    "--data-stats",
+    "--dataset",
+    "fleurs",
+    "--split",
+    "test"
+  ],
+  "config": {
+    "seed": 42,
+    "paths": {
+      "data_root": "data",
+      "cache_root": "cache",
+      "runs_dir": "runs",
+      "models_dir": "models"
+    },
+    "audio": {
+      "sampling_rate": 16000
+    },
+    "datasets": {
+      "common_voice": {
+        "hf_id": "mozilla-foundation/common_voice_17_0",
+        "hf_config": "tr"
+      },
+      "fleurs": {
+        "source": "gcs",
+        "gcs_url": "https://storage.googleapis.com/xtreme_translations/FLEURS102/tr_tr.tar.gz",
+        "hf_id": "google/fleurs",
+        "hf_config": "tr_tr"
+      }
+    },
+    "model": {
+      "language": "turkish",
+      "language_code": "tr",
+      "task": "transcribe"
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "torch": "2.13.0+cu130",
+    "cuda_available": false,
+    "transformers": "4.46.3"
+  },
+  "git_commit": "91e55027297c8cc9d8e88f467e29fdcf152d9add",
+  "started_utc": "20260802T164949Z",
+  "status": "failed",
+  "metrics": {},
+  "artifacts": {},
+  "wall_seconds": 0.64,
+  "error": {
+    "type": "RuntimeError",
+    "message": "no FLEURS rows found for split 'test' in data/raw/fleurs/tr_tr",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/analyze.py\", line 296, in main\n    manifest = data_mod.prepare_manifest(cfg, args.dataset, args.split, args.max_samples)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/data.py\", line 210, in prepare_manifest\n    ds = _LOADERS[dataset](cfg, split)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/data.py\", line 126, in load_fleurs\n    raise RuntimeError(f\"no FLEURS rows found for split {split!r} in {lang_dir}\")\nRuntimeError: no FLEURS rows found for split 'test' in data/raw/fleurs/tr_tr\n"
+  }
+}

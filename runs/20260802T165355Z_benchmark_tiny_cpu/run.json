@@ -1,0 +1,75 @@
+{
+  "run_id": "20260802T165355Z_benchmark_tiny_cpu",
+  "kind": "benchmark",
+  "name": "tiny_cpu",
+  "argv": [
+    "/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/benchmark.py",
+    "--config",
+    "configs/default.yaml",
+    "--arch",
+    "tiny",
+    "--n-utterances",
+    "60"
+  ],
+  "config": {
+    "seed": 42,
+    "paths": {
+      "data_root": "data",
+      "cache_root": "cache",
+      "runs_dir": "runs",
+      "models_dir": "models"
+    },
+    "audio": {
+      "sampling_rate": 16000
+    },
+    "datasets": {
+      "common_voice": {
+        "hf_id": "mozilla-foundation/common_voice_17_0",
+        "hf_config": "tr"
+      },
+      "fleurs": {
+        "source": "gcs",
+        "gcs_url": "https://storage.googleapis.com/xtreme_translations/FLEURS102/tr_tr.tar.gz",
+        "hf_id": "google/fleurs",
+        "hf_config": "tr_tr"
+      }
+    },
+    "model": {
+      "language": "turkish",
+      "language_code": "tr",
+      "task": "transcribe"
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "torch": "2.13.0+cu130",
+    "cuda_available": false,
+    "transformers": "4.46.3"
+  },
+  "git_commit": "91e55027297c8cc9d8e88f467e29fdcf152d9add",
+  "started_utc": "20260802T165355Z",
+  "status": "completed",
+  "metrics": {
+    "arch": "tiny",
+    "params_total": 37760640,
+    "params_bytes_fp32": 151042560,
+    "params_mib_fp32": 144.0,
+    "params_mib_fp16_equiv": 72.0,
+    "n_utterances": 60,
+    "audio_seconds": 749.9,
+    "proc_seconds": 17.9,
+    "rtf_overall": 0.0238,
+    "rtf_median": 0.0236,
+    "rtf_p90": 0.0323,
+    "encoder_seconds": 6.83,
+    "decoder_seconds": 10.73,
+    "tokens_per_audio_second": 3.2,
+    "torch_threads": 4,
+    "post_load_rss_mib": 1123.3,
+    "peak_rss_mib": 1507.4
+  },
+  "artifacts": {},
+  "wall_seconds": 21.53
+}

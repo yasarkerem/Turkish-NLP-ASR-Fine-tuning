@@ -1,0 +1,74 @@
+{
+  "run_id": "20260802T165146Z_eval_whisper-small_fleurs-test_attempt",
+  "kind": "eval",
+  "name": "whisper-small_fleurs-test_attempt",
+  "argv": [
+    "/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/evaluate.py",
+    "--config",
+    "configs/default.yaml",
+    "--model",
+    "openai/whisper-small",
+    "--dataset",
+    "fleurs",
+    "--split",
+    "test",
+    "--max-samples",
+    "50",
+    "--run-name",
+    "whisper-small_fleurs-test_attempt"
+  ],
+  "config": {
+    "seed": 42,
+    "paths": {
+      "data_root": "data",
+      "cache_root": "cache",
+      "runs_dir": "runs",
+      "models_dir": "models"
+    },
+    "audio": {
+      "sampling_rate": 16000
+    },
+    "datasets": {
+      "common_voice": {
+        "hf_id": "mozilla-foundation/common_voice_17_0",
+        "hf_config": "tr"
+      },
+      "fleurs": {
+        "source": "gcs",
+        "gcs_url": "https://storage.googleapis.com/xtreme_translations/FLEURS102/tr_tr.tar.gz",
+        "hf_id": "google/fleurs",
+        "hf_config": "tr_tr"
+      }
+    },
+    "model": {
+      "language": "turkish",
+      "language_code": "tr",
+      "task": "transcribe"
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "torch": "2.13.0+cu130",
+    "cuda_available": false,
+    "transformers": "4.46.3"
+  },
+  "git_commit": "91e55027297c8cc9d8e88f467e29fdcf152d9add",
+  "started_utc": "20260802T165146Z",
+  "status": "failed",
+  "metrics": {
+    "n_utterances": 50,
+    "device": "cpu",
+    "dtype": "torch.float32"
+  },
+  "artifacts": {},
+  "wall_seconds": 26.36,
+  "model": "openai/whisper-small",
+  "adapter": null,
+  "error": {
+    "type": "ProxyError",
+    "message": "(MaxRetryError(\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /openai/whisper-small/resolve/main/preprocessor_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))\"), '(Request ID: 251690dc-a648-48b0-b56d-dd56df9fae5a)')",
+    "traceback": "Traceback (most recent call last):\n  File \"/root/venv/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 774, in urlopen\n    self._prepare_proxy(conn)\n  File \"/root/venv/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 1055, in _prepare_proxy\n    conn.connect()\n  File \"/root/venv/lib/python3.11/site-packages/urllib3/connection.py\", line 776, in connect\n    self._tunnel()\n  File \"/usr/lib/python3.11/http/client.py\", line 963, in _tunnel\n    raise OSError(f\"Tunnel connection failed: {code} {message.strip()}\")\nOSError: Tunnel connection failed: 403 Forbidden\n\nThe above exception was the direct cause of the following exception:\n\nurllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden'))\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/root/venv/lib/python3.11/site-packages/requests/adapters.py\", line 696, in send\n    resp = conn.urlopen(\n           ^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 842, in urlopen\n    retries = retries.increment(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/urllib3/util/retry.py\", line 543, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /openai/whisper-small/resolve/main/preprocessor_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/evaluate.py\", line 286, in main\n    run_evaluation(cfg, args, log)\n  File \"/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/evaluate.py\", line 134, in run_evaluation\n    model, processor, adapter_bytes = load_model_and_processor(\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/Turkish-NLP-ASR-Fine-tuning/src/turkish_asr/evaluate.py\", line 82, in load_model_and_processor\n    processor = WhisperProcessor.from_pretrained(processor_src)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/transformers/processing_utils.py\", line 944, in from_pretrained\n    args = cls._get_arguments_from_pretrained(pretrained_model_name_or_path, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/transformers/processing_utils.py\", line 990, in _get_arguments_from_pretrained\n    args.append(attribute_class.from_pretrained(pretrained_model_name_or_path, **kwargs))\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/transformers/feature_extraction_utils.py\", line 383, in from_pretrained\n    feature_extractor_dict, kwargs = cls.get_feature_extractor_dict(pretrained_model_name_or_path, **kwargs)\n                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/transformers/feature_extraction_utils.py\", line 509, in get_feature_extractor_dict\n    resolved_feature_extractor_file = cached_file(\n                                      ^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/transformers/utils/hub.py\", line 403, in cached_file\n    resolved_file = hf_hub_download(\n                    ^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 1014, in hf_hub_download\n    return _hf_hub_download_to_cache_dir(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 1077, in _hf_hub_download_to_cache_dir\n    (url_to_download, etag, commit_hash, expected_size, xet_file_data, head_call_error) = _get_metadata_or_catch_error(\n                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 1550, in _get_metadata_or_catch_error\n    metadata = get_hf_file_metadata(\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 1467, in get_hf_file_metadata\n    r = _request_wrapper(\n        ^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 283, in _request_wrapper\n    response = _request_wrapper(\n               ^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 306, in _request_wrapper\n    response = http_backoff(method=method, url=url, **params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/utils/_http.py\", line 326, in http_backoff\n    raise err\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/utils/_http.py\", line 307, in http_backoff\n    response = session.request(method=method, url=url, **kwargs)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/requests/sessions.py\", line 651, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/requests/sessions.py\", line 784, in send\n    r = adapter.send(request, **kwargs)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/huggingface_hub/utils/_http.py\", line 96, in send\n    return super().send(request, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/venv/lib/python3.11/site-packages/requests/adapters.py\", line 723, in send\n    raise ProxyError(e, request=request)\nrequests.exceptions.ProxyError: (MaxRetryError(\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /openai/whisper-small/resolve/main/preprocessor_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))\"), '(Request ID: 251690dc-a648-48b0-b56d-dd56df9fae5a)')\n"
+  }
+}
