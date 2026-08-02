@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "turkish-asr"
+version = "0.1.0"
+description = "Fine-tuning and sliced evaluation of Whisper models for Turkish ASR"
+requires-python = ">=3.10"
+readme = "README.md"
+
+[project.scripts]
+turkish-asr-data = "turkish_asr.data:main"
+turkish-asr-train = "turkish_asr.train:main"
+turkish-asr-evaluate = "turkish_asr.evaluate:main"
+turkish-asr-analyze = "turkish_asr.analyze:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
